@@ -1,0 +1,16 @@
+[
+{
+  "modid": "testmod",
+  "name": "Test Mod",
+  "description": "This is a test mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["rdbo"],
+  "credits": "rdbo",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
