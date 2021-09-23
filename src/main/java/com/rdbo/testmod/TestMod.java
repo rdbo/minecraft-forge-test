@@ -17,11 +17,15 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.BlockPos;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.entity.player.AchievementEvent;
+import net.minecraft.util.IChatComponent;
+import net.minecraft.util.ChatComponentText;
 
 @Mod(modid = TestMod.MODID, version = TestMod.VERSION)
 public class TestMod {
 	public static final String MODID = "testmod";
 	public static final String VERSION = "1.1";
+	public static String lastAchievement = "";
 
 	@EventHandler
 	public void init(FMLInitializationEvent event)
@@ -52,5 +56,16 @@ public class TestMod {
 			EnumChatFormatting.RED + "Held Item: " + item_name,
 			5, 5 + font_renderer.FONT_HEIGHT * 2, 0
 		);
+		font_renderer.drawString(
+			EnumChatFormatting.YELLOW + "Last Achievement: " + this.lastAchievement,
+			5, 5 + font_renderer.FONT_HEIGHT * 3, 0
+		);
+	}
+
+	@SubscribeEvent
+	public void onAchievement(AchievementEvent event)
+	{
+		this.lastAchievement = event.achievement.statId;
+		Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("You earned an achievement"));
 	}
 }
